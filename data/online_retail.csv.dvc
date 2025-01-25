@@ -1,0 +1,5 @@
+outs:
+- md5: 7e64244e60747a06a4cafc8e152aa31b
+  size: 48581636
+  hash: md5
+  path: online_retail.csv
