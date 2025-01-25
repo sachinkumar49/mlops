@@ -1,0 +1,7 @@
+flask
+pytest
+pytest-cov
+flake8
+
+
+1R1tJWxCgLmwAgtudE9g-THJ5bwQRoW6t
