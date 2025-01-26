@@ -29,15 +29,18 @@ print('drop unnecessary columns', data.head())
 data = data.dropna()
 print('missing values handled', data.head())
 # Convert categorical variables to dummy variables
-data = pd.get_dummies(data, columns=['StockCode', 'CustomerID', 'Country'], drop_first=True)
+data = pd.get_dummies(
+    data, columns=['StockCode', 'CustomerID', 'Country'],
+    drop_first=True)
 
 # Step 3: Define Features and Target
 X = data.drop(columns=['TotalSales'])
 y = data['TotalSales']
 
 # Step 4: Split Data
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-print('data splitted', X_train.head())	
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
+                                                    random_state=42)
+print('data splitted', X_train.head())
 # Step 5: Train the Model
 model = RandomForestRegressor(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
@@ -48,11 +51,9 @@ rmse = np.sqrt(mean_squared_error(y_test, y_pred))
 print(f"Root Mean Squared Error (RMSE): {rmse}")
 
 # Step 7: Save the Model
-import joblib
 joblib.dump(model, 'sales_prediction_model.pkl')
 print("Model saved as 'sales_prediction_model.pkl'.")
 
 # Save the model
 joblib.dump(model, 'model.pkl')
-
 print("Model saved as 'model.pkl'")
