@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/sk315/workspace/mlops/mlruns/720644388166654348/d92b23c0ba5f4ebbb458b943d01055a9/artifacts
+end_time: 1737790240967
+entry_point_name: ''
+experiment_id: '720644388166654348'
+lifecycle_stage: active
+run_id: d92b23c0ba5f4ebbb458b943d01055a9
+run_name: blushing-stoat-786
+run_uuid: d92b23c0ba5f4ebbb458b943d01055a9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1737790238288
+status: 3
+tags: []
+user_id: sk315

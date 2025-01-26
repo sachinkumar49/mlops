@@ -1,11 +1,13 @@
-dvc
-flask
-pytest
-pytest-cov
-flake8
-mlflow
-joblib
-pandas
-scikit-learn
-numpy
-optuna
+dvc==3.59.0  # Example version, replace with the desired version
+flask==3.1.0
+pytest==8.3.4
+pytest-cov==6.0.0
+flake8==7.1.1
+mlflow==2.20.0
+joblib==1.4.2
+pandas==2.2.3
+scikit-learn==1.6.1
+numpy==2.2.2
+optuna==4.2.0
+pytest-mock==3.14.0
+requests==2.32.3

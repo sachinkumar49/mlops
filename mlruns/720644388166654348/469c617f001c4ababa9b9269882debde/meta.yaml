@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/sk315/workspace/mlops/mlruns/720644388166654348/469c617f001c4ababa9b9269882debde/artifacts
+end_time: 1737790238282
+entry_point_name: ''
+experiment_id: '720644388166654348'
+lifecycle_stage: active
+run_id: 469c617f001c4ababa9b9269882debde
+run_name: stylish-ant-621
+run_uuid: 469c617f001c4ababa9b9269882debde
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1737790235559
+status: 3
+tags: []
+user_id: sk315

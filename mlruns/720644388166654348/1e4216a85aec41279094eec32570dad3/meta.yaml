@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/sk315/workspace/mlops/mlruns/720644388166654348/1e4216a85aec41279094eec32570dad3/artifacts
+end_time: 1737790561317
+entry_point_name: ''
+experiment_id: '720644388166654348'
+lifecycle_stage: active
+run_id: 1e4216a85aec41279094eec32570dad3
+run_name: nebulous-colt-765
+run_uuid: 1e4216a85aec41279094eec32570dad3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1737790558160
+status: 3
+tags: []
+user_id: sk315

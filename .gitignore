@@ -1,5 +1,7 @@
 env/
-./data/online_retail.csv
+data/online_retail.csv
 prediction.py
-model.pkl
-mlruns/
+.coverage
+htmlcov/
+test_data.csv
+test_model.pkl
