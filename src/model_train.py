@@ -37,7 +37,9 @@ def train_model(X, y):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
                                                         random_state=42)
     model = RandomForestRegressor(n_estimators=100, random_state=42)
+    print("Training the model...")
     model.fit(X_train, y_train)
+    print("Model trained successfully.")
     y_pred = model.predict(X_test)
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     return model, rmse
@@ -49,8 +51,11 @@ def save_model(model, file_name):
 
 def main():
     data = load_data('./data/online_retail.csv')
+    print("Data loaded successfully.")
     data = preprocess_data(data)
+    print("Data preprocessed successfully.")
     X = data.drop(columns=['TotalSales'])
+    print("Features extracted successfully.")
     y = data['TotalSales']
     model, rmse = train_model(X, y)
     print(f"Root Mean Squared Error (RMSE): {rmse}")
