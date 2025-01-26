@@ -1,9 +1,9 @@
-
+import pytest
+import numpy as np
+import os
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from src.model_train import (
-    load_data,
-    preprocess_data,
     train_model,
     save_model,
     main
@@ -11,82 +11,69 @@ from src.model_train import (
 from unittest.mock import patch
 
 
-def test_load_data():
-    # Create a mock dataset
-    data = {
-        "InvoiceNo": ["1", "2"],
-        "StockCode": ["A", "B"],
-        "Description": ["Item1", "Item2"],
-        "Quantity": [10, 5],
-        "InvoiceDate": ["2023-01-01", "2023-01-02"],
-        "UnitPrice": [2.5, 5.0],
-        "CustomerID": ["C1", "C2"],
-        "Country": ["USA", "UK"]
-    }
-    mock_data = pd.DataFrame(data)
-    mock_data.to_csv("test_data.csv", index=False)
-    # Load the data
-    loaded_data = load_data("test_data.csv")
-    assert isinstance(loaded_data, pd.DataFrame)
-    assert loaded_data.shape == (2, 8)
+@pytest.fixture
+def mock_dataset_path(tmp_path):
+    # Create a temporary mock dataset
+    mock_file = tmp_path / "diabetes_dataset.csv"
+    mock_data = pd.DataFrame({
+        "age": [25, 30],
+        "sex": [1, 2],
+        "bmi": [22.0, 25.5],
+        "bp": [80, 85],
+        "s1": [150, 160],
+        "s2": [100, 110],
+        "s3": [20, 30],
+        "s4": [0.5, 0.6],
+        "s5": [4.0, 5.0],
+        "s6": [90, 95],
+        "target": [100, 200],
+    })
+    mock_data.to_csv(mock_file, index=False)
+    return str(mock_file)
 
 
-def test_preprocess_data():
-    data = {
-        "InvoiceNo": ["1", "2"],
-        "StockCode": ["A", "B"],
-        "Description": ["Item1", "Item2"],
-        "Quantity": [10, 5],
-        "InvoiceDate": ["2023-01-01", "2023-01-02"],
-        "UnitPrice": [2.5, 5.0],
-        "CustomerID": ["C1", "C2"],
-        "Country": ["USA", "UK"]
-    }
-    df = pd.DataFrame(data)
-    processed_data = preprocess_data(df)
-    assert "TotalSales" in processed_data.columns
-    assert processed_data.isnull().sum().sum() == 0
+@pytest.fixture
+def mock_data():
+    """Fixture to return mock training and test data."""
+    X_train = np.array([[23, 1, 25.3, 80, 1, 0, 1, 0, 0, 1],
+                        [45, 0, 30.2, 70, 0, 1, 0, 1, 0, 0],
+                        [50, 1, 22.5, 60, 1, 1, 1, 0, 1, 1]])
+    X_test = np.array([[60, 0, 28.5, 75, 1, 0, 1, 1, 0, 0],
+                       [30, 1, 27.1, 85, 0, 1, 0, 0, 1, 1]])
+    y_train = np.array([150, 130, 160])
+    y_test = np.array([140, 135])
+    return X_train, X_test, y_train, y_test
 
 
-def test_train_model():
-    data = {
-        "Quantity": [10, 5],
-        "UnitPrice": [2.5, 5.0],
-        "StockCode": [1, 2],
-        "CustomerID": [1, 2],
-        "Country": [1, 2],
-        "Year": [2023, 2023],
-        "Month": [1, 1],
-        "Day": [1, 2],
-        "Hour": [0, 0],
-        "TotalSales": [25.0, 25.0]
-    }
-    df = pd.DataFrame(data)
-    X = df.drop(columns=['TotalSales'])
-    y = df['TotalSales']
-    model, rmse = train_model(X, y)
+def test_train_model(mock_data):
+    """Test the model training function."""
+    X_train, X_test, y_train, y_test = mock_data
+    model, rmse = train_model(X_train, X_test, y_train, y_test)
     assert isinstance(model, RandomForestRegressor)
     assert rmse >= 0
 
 
 def test_save_model():
+    """Test the saving of the model."""
     model = RandomForestRegressor()
     save_model(model, "test_model.pkl")
-    assert open("test_model.pkl", "rb") is not None
+    # Check if the model file is created
+    assert os.path.exists("test_model.pkl")
+    # Clean up after test
+    os.remove("test_model.pkl")
 
 
-def test_main(mocker):
-    mocker.patch("src.model_train.load_data", return_value=pd.DataFrame({
-        'Quantity': [1, 2],
-        'UnitPrice': [10.0, 20.0],
-        'InvoiceDate': ['2023-01-01 10:00:00', '2023-01-02 11:00:00'],
-        'StockCode': ['S001', 'S002'],
-        'CustomerID': ['C001', 'C002'],
-        'Country': ['UK', 'USA'],
-        'InvoiceNo': ['INV001', 'INV002'],  # Added InvoiceNo
-        'Description': ['Item1', 'Item2']
-    }))
-    mocker.patch("src.model_train.save_model")
-    with patch("builtins.print") as mock_print:
-        main()
+@patch("src.model_train.load", return_value=(np.array(
+    [[23, 1, 25.3, 80, 1, 0, 1, 0, 0, 1]]), np.array(
+        [[60, 0, 28.5, 75, 1, 0, 1, 1, 0, 0]]),
+    np.array([150]), np.array([140])))
+@patch("src.model_train.save_model")
+@patch("builtins.print")
+def test_main(mock_print, mock_save_model, mock_load):
+    """Test the main function for running the model training and saving."""
+    main()
+
+    # Ensure that the print statement was called
     mock_print.assert_any_call("Model saved as 'model.pkl'.")
+    # Ensure that the model is saved using the save_model function
+    mock_save_model.assert_called_once()
