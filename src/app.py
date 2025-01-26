@@ -17,7 +17,7 @@ def predict():
 
 
 def start_app():  # Move app.run into a function
-    app.run(debug=True, port=5001)
+    app.run(host="0.0.0.0", port=5000)
 
 
 if __name__ == "__main__":

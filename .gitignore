@@ -1,7 +1,12 @@
 env/
 data/online_retail.csv
+data/diabetes_dataset.csv
 prediction.py
 .coverage
 htmlcov/
 test_data.csv
 test_model.pkl
+*__pycache__/
+mlruns/
+mlartifacts/
+

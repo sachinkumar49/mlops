@@ -1,9 +1,19 @@
+# Use Python base image
 FROM python:3.12-slim
 
+# Set working directory
 WORKDIR /app
-COPY requirements.txt .
+
+# Copy files to the container
+COPY requirements.txt requirements.txt
+COPY src/ /app/
+COPY model.pkl model1.pkl
+
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+# Expose the port
 EXPOSE 5000
-CMD ["python", "src/app.py"]
+
+# Run the application
+CMD ["python", "app.py"]
