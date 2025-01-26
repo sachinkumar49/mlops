@@ -6,7 +6,8 @@ prediction.py
 htmlcov/
 test_data.csv
 test_model.pkl
-*__pycache__/
+__pycache__/
+
 mlruns/
 mlartifacts/
 

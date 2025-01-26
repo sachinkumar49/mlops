@@ -30,8 +30,8 @@ def preprocess_data(data):
     return scaled_features_df
 
 
-def load():
-    row_data = load_data('./data/diabetes_dataset.csv')
+def load(path='./data/diabetes_dataset.csv'):
+    row_data = load_data(path)
     print("Data loaded successfully.")
     processed_data = preprocess_data(row_data)
     print("Data preprocessed successfully.")

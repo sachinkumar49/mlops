@@ -14,7 +14,10 @@ def mock_data():
     return X_train, X_test, y_train, y_test
 
 
-@patch("src.dataprocessing.load")
+@patch("src.hyper_parameter.load", return_value=(np.array(
+    [[23, 1, 25.3, 80, 1, 0, 1, 0, 0, 1]]), np.array(
+        [[60, 0, 28.5, 75, 1, 0, 1, 1, 0, 0]]),
+    np.array([150]), np.array([140])))
 def test_objective(mock_load, mock_data):
     """Test the objective function with mock data."""
     mock_load.return_value = mock_data
