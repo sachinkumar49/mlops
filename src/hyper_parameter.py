@@ -3,6 +3,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 import optuna
 from src.dataprocessing import load
+from src.model_train import save_model
 
 
 def objective(trial):
@@ -34,6 +35,9 @@ def main():
     # Print best hyperparameters and RMSE
     print(f"Best hyperparameters: {study.best_trial.params}")
     print(f"Best RMSE: {study.best_value}")
+    final_model = RandomForestRegressor(study.best_trial.params,
+                                        random_state=42)
+    save_model(final_model, "model.pkl")
 
 
 if __name__ == "__main__":
