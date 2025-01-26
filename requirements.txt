@@ -11,3 +11,4 @@ numpy==2.2.2
 optuna==4.2.0
 pytest-mock==3.14.0
 requests==2.32.3
+dvc_gdrive==3.0.1
