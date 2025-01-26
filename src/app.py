@@ -1,17 +1,23 @@
 from flask import Flask, request, jsonify
-import pickle
+import joblib
 
+# Initialize Flask app
 app = Flask(__name__)
 
-# Load model
-with open("model.pkl", "rb") as f:
-    model = pickle.load(f)
+# Load the model
+model = joblib.load('model.pkl')
 
-@app.route("/predict", methods=["POST"])
+@app.route('/predict', methods=['POST'])
 def predict():
-    data = request.json
-    prediction = model.predict([data["features"]])
-    return jsonify({"prediction": prediction.tolist()})
+    # Get features from the incoming JSON request
+    data = request.get_json()
+    features = data['features']
+    
+    # Make prediction
+    prediction = model.predict([features])
+    
+    # Return the result as JSON
+    return jsonify({'prediction': prediction.tolist()})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(debug=True, port=5001)

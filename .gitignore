@@ -1,2 +1,5 @@
 env/
 ./data/online_retail.csv
+prediction.py
+model.pkl
+mlruns/
