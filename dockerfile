@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy files to the container
 COPY requirements.txt requirements.txt
 COPY src/ /app/
-COPY model.pkl model1.pkl
+COPY model.pkl model.pkl
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
