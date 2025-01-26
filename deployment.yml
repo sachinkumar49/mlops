@@ -13,7 +13,14 @@ spec:
         app: ml-model
     spec:
       containers:
-      - name: ml-model
-        image: your-dockerhub-username/ml-model:latest
-        ports:
-        - containerPort: 5000
+        - name: ml-model
+          image: your-dockerhub-username/ml-model:latest
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
