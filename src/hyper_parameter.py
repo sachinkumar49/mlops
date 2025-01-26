@@ -44,6 +44,7 @@ def main():
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     print(f"Final RMSE: {rmse}")
     save_model(best_model, "model.pkl")
+    print("Model saved as 'model.pkl'.")
 
 
 if __name__ == "__main__":
