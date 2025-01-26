@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/sk315/workspace/mlops/mlruns/720644388166654348/8fd8f0374c5a45d386a0584fa79144ca/artifacts
+end_time: 1737790566580
+entry_point_name: ''
+experiment_id: '720644388166654348'
+lifecycle_stage: active
+run_id: 8fd8f0374c5a45d386a0584fa79144ca
+run_name: flawless-donkey-857
+run_uuid: 8fd8f0374c5a45d386a0584fa79144ca
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1737790563932
+status: 3
+tags: []
+user_id: sk315

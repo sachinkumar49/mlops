@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/sk315/workspace/mlops/mlruns/720644388166654348/c34c1f16735e4ab68c3ace9c54ca7dfb/artifacts
+end_time: 1737790563927
+entry_point_name: ''
+experiment_id: '720644388166654348'
+lifecycle_stage: active
+run_id: c34c1f16735e4ab68c3ace9c54ca7dfb
+run_name: blushing-rook-480
+run_uuid: c34c1f16735e4ab68c3ace9c54ca7dfb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1737790561323
+status: 3
+tags: []
+user_id: sk315

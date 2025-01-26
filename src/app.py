@@ -10,14 +10,15 @@ model = joblib.load('model.pkl')
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    # Get features from the incoming JSON request
     data = request.get_json()
     features = data['features']
-    # Make prediction
     prediction = model.predict([features])
-    # Return the result as JSON
     return jsonify({'prediction': prediction.tolist()})
 
 
-if __name__ == "__main__":
+def start_app():  # Move app.run into a function
     app.run(debug=True, port=5001)
+
+
+if __name__ == "__main__":
+    start_app()

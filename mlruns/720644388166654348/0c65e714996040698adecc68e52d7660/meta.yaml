@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/sk315/workspace/mlops/mlruns/720644388166654348/0c65e714996040698adecc68e52d7660/artifacts
+end_time: 1737790235554
+entry_point_name: ''
+experiment_id: '720644388166654348'
+lifecycle_stage: active
+run_id: 0c65e714996040698adecc68e52d7660
+run_name: trusting-fly-197
+run_uuid: 0c65e714996040698adecc68e52d7660
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1737790230919
+status: 3
+tags: []
+user_id: sk315
